@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Tum💗</title>
+
+<link rel="apple-touch-icon" href="https://i.imgur.com/J5LVHEL.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to bottom, #ffd6e7, #fff);
+    text-align: center;
+}
+
+.container {
+    background: white;
+    width: 370px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px pink;
+}
+
+h1 {
+    color: #ff3399;
+}
+
+.type {
+    color: #ff66b2;
+    font-size: 14px;
+}
+
+.word {
+    font-size: 24px;
+    margin: 15px;
+    color: #ff4da6;
+}
+
+input {
+    padding: 10px;
+    width: 85%;
+    border-radius: 10px;
+    border: 1px solid pink;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #ff66b2;
+    color: white;
+    border-radius: 10px;
+}
+
+.result {
+    margin-top: 10px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🐱 For Tum💗</h1>
+
+<div class="container">
+
+<div class="type" id="type"></div>
+<div class="word" id="word"></div>
+
+<input id="answer" placeholder="Your answer...">
+<br>
+
+<button onclick="check()">Check 💖</button>
+<button onclick="next()">Next ➡️</button>
+
+<div class="result" id="result"></div>
+<div id="love" style="color:#ff3399; margin-top:10px;"></div>
+
+</div>
+
+<script>
+const loveMessages = [
+    "💕 Học giỏi lên nha bé",
+    "😏 Học xong anh thưởng 😌",
+    "🥺 Cố lên nha, anh luôn ở đây"
+];
+
+const data = [
+{type:"Vocabulary", q:"environment", a:"môi trường"},
+{type:"Vocabulary", q:"pollution", a:"ô nhiễm"},
+{type:"Vocabulary", q:"conservation", a:"bảo tồn"},
+
+{type:"Grammar", q:"I wish I ___ (be) taller.", a:"were"},
+{type:"Grammar", q:"If I ___ (have) money, I would travel.", a:"had"},
+{type:"Grammar", q:"She ___ (live) here since 2020.", a:"has lived"},
+
+{type:"Phrasal Verb", q:"give up", a:"từ bỏ"},
+{type:"Phrasal Verb", q:"look after", a:"chăm sóc"},
+{type:"Phrasal Verb", q:"turn off", a:"tắt"},
+];
+
+let i = 0;
+
+function randomLove(){
+    return loveMessages[Math.floor(Math.random() * loveMessages.length)];
+}
+
+function show(){
+    document.getElementById("type").innerText = data[i].type;
+    document.getElementById("word").innerText = data[i].q;
+    document.getElementById("answer").value = "";
+    document.getElementById("result").innerText = "";
+    document.getElementById("love").innerText = randomLove();
+}
+
+function check(){
+    let user = document.getElementById("answer").value.toLowerCase().trim();
+    let correct = data[i].a.toLowerCase();
+
+    if(user === correct){
+        document.getElementById("result").innerText = "💖 Correct!";
+        document.getElementById("result").style.color = "green";
+        document.getElementById("love").innerText = randomLove();
+    } else {
+        document.getElementById("result").innerText = "❌ " + data[i].a;
+        document.getElementById("result").style.color = "red";
+    }
+}
+
+function next(){
+    i = (i + 1) % data.length;
+    show();
+}
+
+show();
+</script>
+
+</body>
+</html>
